@@ -10,4 +10,8 @@ public interface GameService {
     Game createGame(GameDTO gameDTO) throws DatabaseException;
 
     List<Game> getAllGames() throws DatabaseException;
+
+    Game updateGame(Game game) throws DatabaseException;
+
+    Game getGame(Long id);
 }

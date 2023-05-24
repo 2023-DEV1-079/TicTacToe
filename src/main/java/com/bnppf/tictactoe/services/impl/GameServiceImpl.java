@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 public class GameServiceImpl implements GameService {
@@ -59,5 +60,37 @@ public class GameServiceImpl implements GameService {
 
         return allGames;
     }
+
+
+    /**
+     * Method to update the DB with the updated game
+     * @param game The game that needs to be updated already with the new info
+     * @return The updated game coming from the DB
+     * @throws DatabaseException Exception thrown if there is any issue with the database transaction
+     */
+    @Override
+    public Game updateGame(Game game) throws DatabaseException {
+        Game updatedGame;
+
+        try {
+            updatedGame = gameRepository.save(game);
+        } catch (Exception e) {
+            throw new DatabaseException("Game could not be updated", e);
+        }
+
+        return updatedGame;
+    }
+
+    /**
+     * Finds a game by ID
+     * @param id The id of the game to find
+     * @return The game if found, otherwise it throws an exception
+     */
+    @Override
+    public Game getGame(Long id) throws NoSuchElementException {
+        return gameRepository.findById(id).orElseThrow();
+    }
+
+
 
 }

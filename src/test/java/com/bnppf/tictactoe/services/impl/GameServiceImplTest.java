@@ -10,12 +10,14 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
 
 
 @SpringBootTest
@@ -26,15 +28,17 @@ class GameServiceImplTest {
 
     @Mock
     GameRepository gameRepository;
+
     private static final GameDTO GAME_DTO  = new GameDTO("Marcos", "Alexandra");
     private static final GameDTO GAME_DTO_2  = new GameDTO("Carlos", "Ana");
-
     private static final List<Game> GAMES = new ArrayList<>(Arrays.asList(new Game(GAME_DTO),new Game(GAME_DTO_2)));
+
+
 
     @BeforeEach
     void setUp(){
-        Mockito.when(gameRepository.save(Mockito.any())).thenReturn(new Game(GAME_DTO));
-        Mockito.when(gameRepository.findAll()).thenReturn(GAMES);
+        when(gameRepository.save(any())).thenReturn(new Game(GAME_DTO));
+        when(gameRepository.findAll()).thenReturn(GAMES);
     }
 
     @Test
@@ -50,10 +54,12 @@ class GameServiceImplTest {
     }
 
     @Test
-    void getAllGames() throws DatabaseException {
+    void getAllGamesTest() throws DatabaseException {
         List<Game> allGames = gameService.getAllGames();
         Assertions.assertEquals(allGames.size(),GAMES.size());
     }
+
+
 
 
 }

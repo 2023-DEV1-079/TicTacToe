@@ -2,8 +2,8 @@ package com.bnppf.tictactoe.controllers;
 
 import com.bnppf.tictactoe.dtos.GameDTO;
 import com.bnppf.tictactoe.entities.Game;
+import com.bnppf.tictactoe.helpers.TestsHelper;
 import com.bnppf.tictactoe.services.GameService;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,10 +40,9 @@ class GameControllerTest {
 
     @Test
     void createGameShouldBeOkTest() throws Exception {
-        Mockito.when(gameService.createGame(Mockito.any())).thenReturn(new Game(GAME_DTO));
         mvc.perform( MockMvcRequestBuilders
                         .post(API_ENDPOINT)
-                        .content(asJsonString(GAME_DTO))
+                        .content(TestsHelper.asJsonString(GAME_DTO))
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -55,7 +54,7 @@ class GameControllerTest {
         Mockito.when(gameService.createGame(Mockito.any())).thenReturn(new Game(GAME_DTO));
         mvc.perform( MockMvcRequestBuilders
                         .post(API_ENDPOINT)
-                        .content(asJsonString(GAME_DTO))
+                        .content(TestsHelper.asJsonString(GAME_DTO))
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -83,12 +82,5 @@ class GameControllerTest {
                 .andDo(MockMvcResultHandlers.print());
     }
 
-    public static String asJsonString(final Object obj) {
-        try {
-            return new ObjectMapper().writeValueAsString(obj);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
 
 }
