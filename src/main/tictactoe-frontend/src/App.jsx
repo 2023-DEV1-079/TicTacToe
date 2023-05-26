@@ -2,17 +2,17 @@ import Cell from "./components/Cell";
 import CreateGameModal from "./components/CreateGameModal";
 import useGame from "./hooks/useGame";
 import { TURNS } from "./constants/constants";
-import EndGameModal from "./components/EndGameModal";
+import EndGameModal from "./components/endGameModal";
 
 function App() {
   const { game, updateBoard, activeTurn } = useGame();
 
   return (
-    <main className="h-screen flex flex-col items-center justify-center space-y-4 z-20 relative">
+    <main className="h-screen flex flex-col items-center justify-center z-20 relative">
       <CreateGameModal />
       <EndGameModal gameStatus={game?.gameStatus}></EndGameModal>.
       <h1 className="text-5xl md:text-7xl font-bold">Tic Tac Toe</h1>
-      <section className="grid grid-cols-3 gap-4">
+      <section className="grid grid-cols-3 gap-4 py-4">
         {game
           ? game?.dashboard.map((nested, row) => {
               return nested.map((_, col) => {
