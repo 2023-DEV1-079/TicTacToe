@@ -17,11 +17,18 @@ The rules are described below :
 You will need Java 17 to build the project
 
 ## Usage
+There are 2 possibilities, building only the API or building
+the API with the frontend embedded.
 
-To start the project we first need to execute: 
+### Building the jar
+To build only the API we need to execute:
+> ./mvnw clean install
 
-> mvn clean install
+To build the API and the frontend:
+> ./mvnw clean install -P frontend
 
+
+### Starting the application
 And then to execute the application:
 
 > java -jar target/tictactoe-0.0.1-SNAPSHOT.jar

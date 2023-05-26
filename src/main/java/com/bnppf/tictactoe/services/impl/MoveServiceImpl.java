@@ -57,7 +57,7 @@ public class MoveServiceImpl implements MoveService {
 
         boolean winner = false;
 
-        if(game.getTurnCount() > FIRST_POSSIBLE_WINNING_MOVE) {
+        if(game.getTurnCount() >= FIRST_POSSIBLE_WINNING_MOVE) {
             winner = checkWinner(game.getDashboard(), moveDTO.getSymbol(), moveDTO.getRow(), moveDTO.getColumn());
         }
 
