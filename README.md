@@ -49,3 +49,11 @@ https://documenter.getpostman.com/view/7003898/2s93m61MPN
 The front end is a react application created with Vite.
 It is already embedded inside the JAR file, so once runned the application
 the frontend is accessible in localhost:8080
+
+The technology used to create the frontend application are:
+-  Vite 4.3.2 
+-  Node 18.16.0
+-  Npm 9.6.7
+
+All of them were the latest version when the application was created and there is no need to have them installed as they will be automatically
+compiled in the JAR file.
